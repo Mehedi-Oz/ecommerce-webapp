@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EcommerceAppController;
@@ -29,6 +30,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //CategoryController
+    Route::get('/category/add', [CategoryController::class, 'index'])->name('category.add');
+    Route::get('/category/manage', [CategoryController::class, 'manage'])->name('category.manage');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/edit', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::get('/category/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/category/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
 require __DIR__ . '/auth.php';

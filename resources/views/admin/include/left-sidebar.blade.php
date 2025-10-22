@@ -16,8 +16,8 @@
                         <span class="hide-menu">Category</span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">Add Category</a></li>
-                        <li><a href="#">Manage Category</a></li>
+                        <li><a href="{{ route('category.add') }}">Add Category</a></li>
+                        <li><a href="{{ route('category.manage') }}">Manage Category</a></li>
                     </ul>
                 </li>
                 <li>
