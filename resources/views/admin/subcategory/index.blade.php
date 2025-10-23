@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Add Category')
+@section('title', 'Add Subcategory')
 
 @section('content')
 
@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Header -->
-                    <h4 class="card-title text-center text-3xl font-bold">Add A Product Category</h4>
+                    <h4 class="card-title text-center text-3xl font-bold">Add A Product Subcategory</h4>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
@@ -18,19 +18,19 @@
                     @endif
 
                     <!-- Form -->
-                    <form class="form-horizontal p-t-20" action="{{ route('category.store') }}" method="POST"
+                    <form class="form-horizontal p-t-20" action="{{ route('subcategory.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
 
-                        <!-- Category Name -->
+                        <!-- Subcategory Name -->
                         <div class="form-group row mb-4">
                             <label for="name" class="col-sm-3 control-label text-sm font-medium">
-                                Category Name <span class="text-danger">*</span>
+                                Subcategory Name <span class="text-danger">*</span>
                             </label>
                             <div class="col-sm-9">
                                 <input type="text"
                                     class="form-control bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:ring-blue-500 focus:border-blue-500"
-                                    id="name" name="name" placeholder="Enter category name" required
+                                    id="name" name="name" placeholder="Enter subcategory name" required
                                     value="{{ old('name') }}">
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
@@ -38,14 +38,14 @@
                             </div>
                         </div>
 
-                        <!-- Category Description -->
+                        <!-- Subcategory Description -->
                         <div class="form-group row mb-4">
-                            <label for="description" class="col-sm-3 control-label text-sm font-medium">Category
+                            <label for="description" class="col-sm-3 control-label text-sm font-medium">Subcategory
                                 Description</label>
                             <div class="col-sm-9">
                                 <textarea
                                     class="form-control bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:ring-blue-500 focus:border-blue-500"
-                                    id="description" name="description" rows="4" placeholder="Enter category description">{{ old('description') }}</textarea>
+                                    id="description" name="description" rows="4" placeholder="Enter subcategory description">{{ old('description') }}</textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -77,7 +77,7 @@
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
                                 <button type="submit" class="btn btn-success waves-effect waves-light text-white">
-                                    Create New Category
+                                    Create New Subcategory
                                 </button>
                             </div>
                         </div>

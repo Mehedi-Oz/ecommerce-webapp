@@ -1,12 +1,18 @@
+<!-- jQuery -->
 <script src="{{ asset('/') }}admin/assets/node_modules/jquery/dist/jquery.min.js"></script>
+
 <!-- Core Bootstrap JavaScript -->
 <script src="{{ asset('/') }}admin/assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- Scrollbar JavaScript for smooth scrolling -->
 <script src="{{ asset('/') }}admin/dist/js/perfect-scrollbar.jquery.min.js"></script>
+
 <!-- Wave Effects for UI interactions -->
 <script src="{{ asset('/') }}admin/dist/js/waves.js"></script>
+
 <!-- Sidebar Menu JavaScript -->
 <script src="{{ asset('/') }}admin/dist/js/sidebarmenu.js"></script>
+
 <!-- Custom JavaScript for Admin Panel -->
 <script src="{{ asset('/') }}admin/dist/js/custom.min.js"></script>
 
@@ -14,10 +20,13 @@
 <!-- Morris.js Charts for data visualization -->
 <script src="{{ asset('/') }}admin/assets/node_modules/raphael/raphael-min.js"></script>
 <script src="{{ asset('/') }}admin/assets/node_modules/morrisjs/morris.min.js"></script>
+
 <!-- Sparkline Charts for small inline charts -->
 <script src="{{ asset('/') }}admin/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js"></script>
+
 <!-- Toast Notifications for alerts and messages -->
 <script src="{{ asset('/') }}admin/assets/node_modules/toast-master/js/jquery.toast.js"></script>
+
 <!-- Dashboard Chart Initialization -->
 <script src="{{ asset('/') }}admin/dist/js/dashboard1.js"></script>
 
@@ -29,7 +38,7 @@
         // Initialize Dropify for basic file uploads
         $('.dropify').dropify();
 
-        // Initialize Dropify with custom messages (French translations as an example)
+        // Initialize Dropify with custom messages (e.g., French translations)
         $('.dropify-fr').dropify({
             messages: {
                 default: 'Drag and drop a file here or click',
@@ -132,4 +141,17 @@
         $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass(
             'btn btn-primary me-1');
     });
+</script>
+
+<!-- Auto-dismiss success alert script -->
+<script>
+    // This script handles the auto-dismiss functionality for success alerts.
+    // The alert will fade out after 5 seconds and then be removed from the DOM.
+    setTimeout(() => {
+        const alert = document.querySelector('.alert'); // Select the alert element
+        if (alert) {
+            alert.classList.add('fade'); // Add fade-out animation
+            setTimeout(() => alert.remove(), 500); // Remove the alert element after fading out
+        }
+    }, 2000); // 2000ms = 2 seconds
 </script>

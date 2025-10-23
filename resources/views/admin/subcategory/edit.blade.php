@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Add Category')
+@section('title', 'Update Category')
 
 @section('content')
 
@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Header -->
-                    <h4 class="card-title text-center text-3xl font-bold">Add A Product Category</h4>
+                    <h4 class="card-title text-center text-3xl font-bold">Update Product Category</h4>
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('success') }}
@@ -18,9 +18,10 @@
                     @endif
 
                     <!-- Form -->
-                    <form class="form-horizontal p-t-20" action="{{ route('category.store') }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form class="form-horizontal p-t-20" action="{{ route('category.update', $category->id) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <!-- Category Name -->
                         <div class="form-group row mb-4">
@@ -31,7 +32,7 @@
                                 <input type="text"
                                     class="form-control bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:ring-blue-500 focus:border-blue-500"
                                     id="name" name="name" placeholder="Enter category name" required
-                                    value="{{ old('name') }}">
+                                    value="{{ old('name', $category->name) }}">
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -45,7 +46,7 @@
                             <div class="col-sm-9">
                                 <textarea
                                     class="form-control bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:ring-blue-500 focus:border-blue-500"
-                                    id="description" name="description" rows="4" placeholder="Enter category description">{{ old('description') }}</textarea>
+                                    id="description" name="description" rows="4" placeholder="Enter category description">{{ old('description', trim($category->description) === 'Not given.' ? '' : trim($category->description)) }}</textarea>
                                 @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -59,12 +60,12 @@
                             <div class="col-sm-9">
                                 <label class="me-3">
                                     <input type="radio" name="is_active" value="1"
-                                        {{ old('is_active', 1) == 1 ? 'checked' : '' }}>
+                                        {{ old('is_active', $category->is_active) == 1 ? 'checked' : '' }}>
                                     <span class="ms-2">Active</span>
                                 </label>
                                 <label>
                                     <input type="radio" name="is_active" value="0"
-                                        {{ old('is_active', 1) == 0 ? 'checked' : '' }}>
+                                        {{ old('is_active', $category->is_active) == 0 ? 'checked' : '' }}>
                                     <span class="ms-2">Inactive</span>
                                 </label>
                                 @error('is_active')
@@ -77,7 +78,7 @@
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
                                 <button type="submit" class="btn btn-success waves-effect waves-light text-white">
-                                    Create New Category
+                                    Update Category
                                 </button>
                             </div>
                         </div>

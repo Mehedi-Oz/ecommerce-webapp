@@ -29,3 +29,4 @@
     href="{{ asset('/') }}admin/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
 <link rel="stylesheet" type="text/css"
     href="{{ asset('/') }}admin/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css">
+

@@ -21,10 +21,11 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $categoryId = $this->route('id');
+
         return [
-            'name' => 'required|string|max:255|unique:categories,name',
+            'name' => 'required|string|max:255|unique:categories,name,' . $categoryId,
             'description' => 'nullable|string|max:1000',
-            'image' => 'nullable|image|mimes:png,jpg,jpeg,webp,gif|max:5048',
             'is_active' => 'required|boolean'
         ];
     }

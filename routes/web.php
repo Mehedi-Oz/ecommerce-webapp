@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EcommerceAppController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -32,12 +33,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //CategoryController
-    Route::get('/category/add', [CategoryController::class, 'index'])->name('category.add');
-    Route::get('/category/manage', [CategoryController::class, 'manage'])->name('category.manage');
-    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category/edit', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::get('/category/update', [CategoryController::class, 'update'])->name('category.update');
-    Route::get('/category/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::prefix('category')->group(function () {
+        Route::get('/add', [CategoryController::class, 'index'])->name('category.add');
+        Route::get('/manage', [CategoryController::class, 'manage'])->name('category.manage');
+        Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/is_active/{id}', [CategoryController::class, 'is_active'])->name('category.is_active');
+        Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+    });
+
+    //SubcategoryController
+    Route::prefix('subcategory')->group(function () {
+        Route::get('/add', [SubcategoryController::class, 'index'])->name('subcategory.add');
+        Route::get('/manage', [SubcategoryController::class, 'manage'])->name('subcategory.manage');
+        Route::post('/store', [SubcategoryController::class, 'store'])->name('subcategory.store');
+        Route::get('/edit/{id}', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
+        Route::put('/update/{id}', [SubcategoryController::class, 'update'])->name('subcategory.update');
+        Route::get('/is_active/{id}', [SubcategoryController::class, 'is_active'])->name('subcategory.is_active');
+        Route::delete('/destroy/{id}', [SubcategoryController::class, 'destroy'])->name('subcategory.destroy');
+    });
 });
 
 require __DIR__ . '/auth.php';
