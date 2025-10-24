@@ -22,6 +22,29 @@
                         enctype="multipart/form-data">
                         @csrf
 
+                        <!-- Category Name -->
+                        <div class="form-group row mb-4">
+                            <label for="category_id" class="col-sm-3 control-label text-sm font-medium">
+                                Category Name <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-sm-9">
+                                <select
+                                    class="form-control bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:ring-blue-500 focus:border-blue-500"
+                                    name="category_id" id="category_id" required>
+                                    <option value="" disabled selected>-- Select Category --</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!-- Subcategory Name -->
                         <div class="form-group row mb-4">
                             <label for="name" class="col-sm-3 control-label text-sm font-medium">

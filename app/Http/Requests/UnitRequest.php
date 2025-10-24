@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class UnitRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,20 +16,18 @@ class CategoryRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
-        $categoryId = $this->route('id');
+        $unitId = $this->route('id');
 
         return [
-            'name' => 'required|string|max:255|unique:categories,name,' . $categoryId,
+            'name' => 'required|string|max:255|unique:units,name,' . $unitId,
+            'code' => 'required|string|max:50|unique:units,code,' . $unitId,
             'description' => 'nullable|string|max:1000',
-            'is_active' => 'required|boolean'
+            'is_active' => 'required|boolean',
         ];
     }
-
 
     /**
      * Custom validation messages.
@@ -37,9 +35,12 @@ class CategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The category name is required.',
-            'name.unique' => 'This category name already exists. Please choose a different name.',
-            'name.max' => 'The category name must not exceed 255 characters.',
+            'name.required' => 'The unit name is required.',
+            'name.unique' => 'This unit name already exists. Please choose a different name.',
+            'name.max' => 'The unit name must not exceed 255 characters.',
+            'code.required' => 'The unit code is required.',
+            'code.unique' => 'This unit code already exists. Please choose a different code.',
+            'code.max' => 'The unit code must not exceed 50 characters.',
             'description.max' => 'The description must not exceed 1000 characters.',
             'is_active.required' => 'Please select the publication status.',
             'is_active.boolean' => 'The publication status must be either active or inactive.',

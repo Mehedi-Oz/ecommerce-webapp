@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EcommerceAppController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\UnitController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -52,6 +54,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/update/{id}', [SubcategoryController::class, 'update'])->name('subcategory.update');
         Route::get('/is_active/{id}', [SubcategoryController::class, 'is_active'])->name('subcategory.is_active');
         Route::delete('/destroy/{id}', [SubcategoryController::class, 'destroy'])->name('subcategory.destroy');
+    });
+
+    Route::prefix('brand')->group(function () {
+        Route::get('/add', [BrandController::class, 'index'])->name('brand.add');
+        Route::get('/manage', [BrandController::class, 'manage'])->name('brand.manage');
+        Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
+        Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::put('/update/{id}', [BrandController::class, 'update'])->name('brand.update');
+        Route::get('/is_active/{id}', [BrandController::class, 'is_active'])->name('brand.is_active');
+        Route::delete('/destroy/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
+    });
+
+    Route::prefix('unit')->group(function () {
+        Route::get('/add', [UnitController::class, 'index'])->name('unit.add');
+        Route::get('/manage', [UnitController::class, 'manage'])->name('unit.manage');
+        Route::post('/store', [UnitController::class, 'store'])->name('unit.store');
+        Route::get('/edit/{id}', [UnitController::class, 'edit'])->name('unit.edit');
+        Route::put('/update/{id}', [UnitController::class, 'update'])->name('unit.update');
+        Route::get('/is_active/{id}', [UnitController::class, 'is_active'])->name('unit.is_active');
+        Route::delete('/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
     });
 });
 

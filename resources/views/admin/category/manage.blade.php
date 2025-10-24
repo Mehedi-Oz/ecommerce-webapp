@@ -33,7 +33,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $category->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $category->name }}</td>
-                                        <td class="" style="max-width: 300px; text-align: justify;">{{ $category->description }}</td>
+                                        <td class="" style="max-width: 300px;">{{ $category->description }}</td>
                                         <td>
                                             <span class="badge {{ $category->is_active ? 'bg-success' : 'bg-danger' }}">
                                                 {{ $category->is_active ? 'Active' : 'Inactive' }}

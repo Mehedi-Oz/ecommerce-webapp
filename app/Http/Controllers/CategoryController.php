@@ -23,10 +23,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $data = $request->validated();
-        if ($request->has('description')) {
-            $data['description'] = $request->input('description') ?? 'Not given.';
-        }
-
+        $data['description'] = $data['description'] ?? 'Not Given.';
         Category::create($data);
         return redirect()->route('category.add')->with('success', 'Category created successfully.');
     }
@@ -53,7 +50,8 @@ class CategoryController extends Controller
         return back();
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $category = Category::findOrFail($id);
         $category->delete();
         return back()->with('success', 'Category deleted successfully.');

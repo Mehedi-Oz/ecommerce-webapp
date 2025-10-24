@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class SubcategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,12 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        $categoryId = $this->route('id');
+        $subcategoryId = $this->route('id');
 
         return [
-            'name' => 'required|string|max:255|unique:categories,name,' . $categoryId,
-            'description' => 'nullable|string|max:1000',
+            'name' => 'required|string|max:255|unique:subcategories,name,' . $subcategoryId,
+            'description' => 'nullable|string|max:255',
+            'category_id' => 'required|exists:categories,id',
             'is_active' => 'required|boolean'
         ];
     }
@@ -37,9 +38,11 @@ class CategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The category name is required.',
-            'name.unique' => 'This category name already exists. Please choose a different name.',
-            'name.max' => 'The category name must not exceed 255 characters.',
+            'name.required' => 'The subcategory name is required.',
+            'name.unique' => 'This subcategory name already exists.',
+            'name.max' => 'The subcategory name must not exceed 255 characters.',
+            'category_id.required' => 'Please select a category.',
+            'category_id.exists' => 'The selected category does not exist.',
             'description.max' => 'The description must not exceed 1000 characters.',
             'is_active.required' => 'Please select the publication status.',
             'is_active.boolean' => 'The publication status must be either active or inactive.',

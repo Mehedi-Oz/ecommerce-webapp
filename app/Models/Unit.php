@@ -4,27 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Subcategory extends Model
+class Unit extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'category_id',
         'name',
+        'code',
         'description',
         'is_active'
     ];
 
     // Cast attributes to specific data types.
     protected $casts = [
-        'is_active' => 'boolean',
+        'is_active' => 'boolean'
     ];
-
-    // Relationship: Subcategory belongs to a Category.
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(Category::class);
-    }
 }
