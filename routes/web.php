@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EcommerceAppController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\UnitController;
@@ -34,7 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //CategoryController
+    // CategoryController
     Route::prefix('category')->group(function () {
         Route::get('/add', [CategoryController::class, 'index'])->name('category.add');
         Route::get('/manage', [CategoryController::class, 'manage'])->name('category.manage');
@@ -45,7 +46,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 
-    //SubcategoryController
+    // SubcategoryController
     Route::prefix('subcategory')->group(function () {
         Route::get('/add', [SubcategoryController::class, 'index'])->name('subcategory.add');
         Route::get('/manage', [SubcategoryController::class, 'manage'])->name('subcategory.manage');
@@ -56,6 +57,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/destroy/{id}', [SubcategoryController::class, 'destroy'])->name('subcategory.destroy');
     });
 
+    // BrandController
     Route::prefix('brand')->group(function () {
         Route::get('/add', [BrandController::class, 'index'])->name('brand.add');
         Route::get('/manage', [BrandController::class, 'manage'])->name('brand.manage');
@@ -66,6 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/destroy/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
     });
 
+    // UnitController
     Route::prefix('unit')->group(function () {
         Route::get('/add', [UnitController::class, 'index'])->name('unit.add');
         Route::get('/manage', [UnitController::class, 'manage'])->name('unit.manage');
@@ -74,6 +77,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/update/{id}', [UnitController::class, 'update'])->name('unit.update');
         Route::get('/is_active/{id}', [UnitController::class, 'is_active'])->name('unit.is_active');
         Route::delete('/destroy/{id}', [UnitController::class, 'destroy'])->name('unit.destroy');
+    });
+
+    // ProductController
+    Route::prefix('product')->group(function () {
+        Route::get('/add', [ProductController::class, 'index'])->name('product.add');
+        Route::get('/get-subcategory-by-category', [ProductController::class, 'getSubcategoryByCategory'])->name('product.get-subcategory-by-category');
+        Route::get('/manage', [ProductController::class, 'manage'])->name('product.manage');
+        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+        Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');
+        Route::get('/is_active/{id}', [ProductController::class, 'is_active'])->name('product.is_active');
+        Route::delete('/destroy/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
 });
 

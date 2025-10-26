@@ -155,3 +155,74 @@
         }
     }, 2000); // 2000ms = 2 seconds
 </script>
+
+
+<!-- SummerNote Text Editor -->
+<script src="{{ asset('/') }}admin/assets/node_modules/summernote/dist/summernote-bs4.min.js"></script>
+<script>
+    $(function() {
+
+        $('.summernote').summernote({
+            height: 350, // set editor height
+            minHeight: null, // set minimum height of editor
+            maxHeight: null, // set maximum height of editor
+            focus: false // set focus to editable area after initializing summernote
+        });
+
+        $('.inline-editor').summernote({
+            airMode: true
+        });
+
+    });
+
+    window.edit = function() {
+            $(".click2edit").summernote()
+        },
+        window.save = function() {
+            $(".click2edit").summernote('destroy');
+        }
+</script>
+
+<!-- AJAX - Get Subcategories Related To Categories -->
+<script>
+    $(document).ready(function() {
+        // Listen for changes on the category dropdown
+        $('#category_id').on('change', function() {
+            var categoryID = $(this).val();
+
+            // Clear the subcategory dropdown
+            var subcategoryDropdown = $('#subcategory_id');
+            subcategoryDropdown.empty();
+            subcategoryDropdown.append(
+                '<option value="" disabled selected>-- Select Subcategory --</option>');
+
+            if (categoryID) {
+                // Make an AJAX request to fetch subcategories
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('product.get-subcategory-by-category') }}", // Route to fetch subcategories
+                    data: {
+                        id: categoryID
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        if (response.length > 0) {
+                            // Populate the subcategory dropdown with the response data
+                            $.each(response, function(key, value) {
+                                subcategoryDropdown.append('<option value="' + value
+                                    .id + '">' + value.name + '</option>');
+                            });
+                        } else {
+                            subcategoryDropdown.append(
+                                '<option value="" disabled>No Subcategories Found</option>'
+                            );
+                        }
+                    },
+                    error: function() {
+                        alert('Failed to fetch subcategories. Please try again.');
+                    }
+                });
+            }
+        });
+    });
+</script>
