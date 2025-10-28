@@ -51,6 +51,12 @@
                                             </span>
                                         </td>
                                         <td>
+                                            <!-- Details Button -->
+                                            <a href="{{ route('product.details', ['id' => $product->id]) }}"
+                                                title="Product Details" class="btn btn-info btn-sm">
+                                                <i class="fa fa-magnifying-glass"></i>
+                                            </a>
+                                            
                                             <!-- Edit Button -->
                                             <a href="{{ route('product.edit', $product->id) }}" title="Edit"
                                                 class="btn btn-primary btn-sm">

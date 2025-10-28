@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // EcommerceAppController
 Route::get('/', [EcommerceAppController::class, 'index'])->name('home');
-Route::get('/product/category', [EcommerceAppController::class, 'category'])->name('product.category');
+Route::get('/product/category/{id}', [EcommerceAppController::class, 'category'])->name('product.category');
 Route::get('/product/detail', [EcommerceAppController::class, 'detail'])->name('product.detail');
 
 // CartController
@@ -84,6 +84,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/add', [ProductController::class, 'index'])->name('product.add');
         Route::get('/get-subcategory-by-category', [ProductController::class, 'getSubcategoryByCategory'])->name('product.get-subcategory-by-category');
         Route::get('/manage', [ProductController::class, 'manage'])->name('product.manage');
+        Route::get('/details/{id}', [ProductController::class, 'details'])->name('product.details');
         Route::post('/store', [ProductController::class, 'store'])->name('product.store');
         Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::put('/update/{id}', [ProductController::class, 'update'])->name('product.update');

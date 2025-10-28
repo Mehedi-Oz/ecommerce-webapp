@@ -188,10 +188,10 @@
     $(document).ready(function() {
         // Listen for changes on the category dropdown
         $('#category_id').on('change', function() {
-            var categoryID = $(this).val();
+            let categoryID = $(this).val();
 
             // Clear the subcategory dropdown
-            var subcategoryDropdown = $('#subcategory_id');
+            let subcategoryDropdown = $('#subcategory_id');
             subcategoryDropdown.empty();
             subcategoryDropdown.append(
                 '<option value="" disabled selected>-- Select Subcategory --</option>');
@@ -209,8 +209,7 @@
                         if (response.length > 0) {
                             // Populate the subcategory dropdown with the response data
                             $.each(response, function(key, value) {
-                                subcategoryDropdown.append('<option value="' + value
-                                    .id + '">' + value.name + '</option>');
+                                subcategoryDropdown.append('<option value="' + value.id + '">' + value.name + '</option>');
                             });
                         } else {
                             subcategoryDropdown.append(

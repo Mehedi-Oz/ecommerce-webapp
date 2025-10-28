@@ -252,20 +252,37 @@
                             </div>
                         </div>
 
-                        <!-- Other Images -->
-                        {{-- <div class="form-group row mb-4">
+                        <!-- More Product Images -->
+                        <div class="form-group row mb-4">
                             <label class="col-sm-3 control-label text-sm font-medium">
-                                Other Images
+                                More Product Images
                             </label>
                             <div class="col-sm-9">
+                                <!-- Display Existing Images -->
+                                <div class="mb-3">
+                                    @if ($product->productImage->isNotEmpty())
+                                        <div class="row">
+                                            @foreach ($product->productImage as $image)
+                                                <div class="col-md-3 mb-2">
+                                                    <img src="{{ asset('storage/' . $image->image) }}" alt="Other Image"
+                                                        class="img-thumbnail" style="width: 100%; height: auto;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <p class="text-muted">No additional images available.</p>
+                                    @endif
+                                </div>
+
+                                <!-- Upload New Images -->
                                 <input type="file"
                                     class="dropify bg-slate-700 border border-slate-600 rounded-lg text-slate-200 focus:ring-blue-500 focus:border-blue-500"
-                                    id="other_images" name="other_images[]" multiple accept="image/*">
-                                @error('other_images.*')
+                                    id="more_product_images" name="more_product_images[]" multiple accept="image/*">
+                                @error('more_product_images.*')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
 
                         <!-- Publication Status -->
                         <div class="form-group row mb-4">
