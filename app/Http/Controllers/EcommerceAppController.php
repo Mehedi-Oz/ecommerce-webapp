@@ -26,8 +26,9 @@ public function category($id)
     return view('website.category.index', compact('products'));
 }
 
-    public function detail()
+    public function detail($id)
     {
-        return view('website.detail.index');
+        $product = Product::findOrFail($id);
+        return view('website.detail.index', compact('product'));
     }
 }

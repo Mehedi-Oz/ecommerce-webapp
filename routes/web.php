@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 // EcommerceAppController
 Route::get('/', [EcommerceAppController::class, 'index'])->name('home');
 Route::get('/product/category/{id}', [EcommerceAppController::class, 'category'])->name('product.category');
-Route::get('/product/detail', [EcommerceAppController::class, 'detail'])->name('product.detail');
+Route::get('/product/detail/{id}', [EcommerceAppController::class, 'detail'])->name('product.detail');
 
 // CartController
 Route::get('/cart/show', [CartController::class, 'index'])->name('cart.show');
+Route::post('/cart/store/{id}', [CartController::class, 'store'])->name('cart.store');
 
 // CheckoutController
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
