@@ -22,6 +22,9 @@ Route::get('/product/detail/{id}', [EcommerceAppController::class, 'detail'])->n
 // CartController
 Route::get('/cart/show', [CartController::class, 'index'])->name('cart.show');
 Route::post('/cart/store/{id}', [CartController::class, 'store'])->name('cart.store');
+Route::post('/cart/update/{rowId}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{rowId}', [CartController::class, 'destroy'])->name('cart.destroy');
+Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 // CheckoutController
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

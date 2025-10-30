@@ -79,3 +79,16 @@
     timer(); // Initialize the timer
     setInterval(timer, 1000); // Update the timer every second
 </script>
+
+<!-- Auto-dismiss success alert script -->
+<script>
+    // This script handles the auto-dismiss functionality for success alerts.
+    // The alert will fade out after 5 seconds and then be removed from the DOM.
+    setTimeout(() => {
+        const alert = document.querySelector('.alert'); // Select the alert element
+        if (alert) {
+            alert.classList.add('fade'); // Add fade-out animation
+            setTimeout(() => alert.remove(), 500); // Remove the alert element after fading out
+        }
+    }, 2000); // 2000ms = 2 seconds
+</script>

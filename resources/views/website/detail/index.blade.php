@@ -57,7 +57,7 @@
                                 <span>${{ number_format($product->regular_price, 2) }}</span>
                             </h3>
                             <p class="info-text">{{ $product->short_description }}</p>
-                            <form action="{{ route('cart.store', ['id' => $Product->id]) }}" method="POST">
+                            <form action="{{ route('cart.store', ['id' => $product->id]) }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12 col-md-4 col-12">
@@ -72,7 +72,7 @@
                                     <div class="row align-items-end">
                                         <div class="col-lg-4 col-md-4 col-12">
                                             <div class="button cart-button">
-                                                <button type="button" class="btn px-5 form-control"
+                                                <button type="submit" class="btn px-5 form-control"
                                                     style="width: 100%;">Add to Cart</button>
                                             </div>
                                         </div>
