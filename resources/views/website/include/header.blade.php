@@ -120,50 +120,49 @@
                             <div class="cart-items">
                                 <a href="javascript:void(0)" class="main-btn">
                                     <i class="lni lni-cart"></i>
-                                    <span class="total-items">2</span>
+                                    <span class="total-items">{{ Cart::count() }}</span>
                                 </a>
 
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>2 Items</span>
-                                        <a href="cart.html">View Cart</a>
+                                        <span>{{ Cart::count() }} Items</span>
+                                        <a href="{{ route('cart.show') }}">View Cart</a>
                                     </div>
+
                                     <ul class="shopping-list">
-                                        <li>
-                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                    class="lni lni-close"></i></a>
-                                            <div class="cart-img-head">
-                                                <a class="cart-img" href="product-details.html"><img
-                                                        src="{{ asset('/') }}website/images/header/cart-items/item1.jpg"
-                                                        alt="#"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h4><a href="product-details.html">
-                                                        Apple Watch Series 6</a></h4>
-                                                <p class="quantity">1x - <span class="amount">$99.00</span></p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i
-                                                    class="lni lni-close"></i></a>
-                                            <div class="cart-img-head">
-                                                <a class="cart-img" href="product-details.html"><img
-                                                        src="{{ asset('/') }}website/images/header/cart-items/item2.jpg"
-                                                        alt="#"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                            </div>
-                                        </li>
+                                        @foreach (Cart::content() as $cartItem)
+                                            <li>
+                                                <a href="javascript:void(0)" class="remove" title="Remove this item">
+                                                    <i class="lni lni-close"></i>
+                                                </a>
+                                                <div class="cart-img-head">
+                                                    <a class="cart-img"
+                                                        href="{{ route('product.detail', ['id' => $cartItem->id]) }}">
+                                                        <img src="{{ asset('storage/' . $cartItem->options->image) }}"
+                                                            alt="#">
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h4>
+                                                        <a
+                                                            href="{{ route('product.detail', ['id' => $cartItem->id]) }}">
+                                                            {{ $cartItem->name }}
+                                                        </a>
+                                                    </h4>
+                                                    <p class="quantity">{{ $cartItem->qty }}x - <span
+                                                            class="amount">{{ $cartItem->price }} Taka</span></p>
+                                                </div>
+                                            </li>
+                                        @endforeach
                                     </ul>
+
                                     <div class="bottom">
                                         <div class="total">
                                             <span>Total</span>
-                                            <span class="total-amount">$134.00</span>
+                                            <span class="total-amount">{{ Cart::total() }} Taka</span>
                                         </div>
                                         <div class="button">
-                                            <a href="checkout.html" class="btn animate">Checkout</a>
+                                            <a href="{{ route('checkout') }}" class="btn animate">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -241,7 +240,7 @@
                                         <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
                                         <li class="nav-item"><a href="product-list.html">Shop List</a></li>
                                         <li class="nav-item"><a href="product-details.html">shop Single</a></li>
-                                        <li class="nav-item"><a href="cart.html">Cart</a></li>
+                                        <li class="nav-item"><a href="{{ route('cart.show') }}">Cart</a></li>
                                         <li class="nav-item"><a href="checkout.html">Checkout</a></li>
                                     </ul>
                                 </li>
