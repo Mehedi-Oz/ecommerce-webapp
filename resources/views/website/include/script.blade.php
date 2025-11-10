@@ -22,7 +22,8 @@
         items: 1, // Show one item at a time
         nav: false, // Disable navigation dots
         controls: true, // Enable navigation arrows
-        controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'], // Custom arrow icons
+        controlsText: ['<i class="lni lni-chevron-left"></i>',
+        '<i class="lni lni-chevron-right"></i>'], // Custom arrow icons
     });
 
     //======== Brand Slider Initialization
@@ -35,10 +36,18 @@
         nav: false, // Disable navigation dots
         controls: false, // Disable navigation arrows
         responsive: { // Responsive breakpoints
-            0: { items: 1 }, // 1 item for small screens
-            540: { items: 3 }, // 3 items for medium screens
-            768: { items: 5 }, // 5 items for tablets
-            992: { items: 6 }, // 6 items for desktops
+            0: {
+                items: 1
+            }, // 1 item for small screens
+            540: {
+                items: 3
+            }, // 3 items for medium screens
+            768: {
+                items: 5
+            }, // 5 items for tablets
+            992: {
+                items: 6
+            }, // 6 items for desktops
         }
     });
 </script>
@@ -92,3 +101,12 @@
         }
     }, 2000); // 2000ms = 2 seconds
 </script>
+
+
+<!-- xzoom plugin here -->
+<script src="{{ asset('/') }}website/js/xzoom.min.js"></script>
+<!-- hammer plugin here -->
+<script src="{{ asset('/') }}website/js/setup.js"></script>
+
+<script src="{{ asset('/') }}website/js/main.js"></script>
+

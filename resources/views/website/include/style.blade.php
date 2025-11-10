@@ -18,3 +18,6 @@
 
 <!-- Add this in the <head> section of your layout -->
 <link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css">
+
+
+<link rel="stylesheet" href="{{ asset('/') }}website/css/xzoom.css" media="all" />

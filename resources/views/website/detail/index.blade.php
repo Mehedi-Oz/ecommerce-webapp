@@ -30,19 +30,18 @@
             <div class="top-area">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12 col-12">
-                        <div class="product-images">
-                            <main id="gallery">
-                                <div class="main-img">
-                                    <img src="{{ asset('storage/' . $product->image) }}" id="current"
-                                        alt="{{ $product->name }}">
-                                </div>
-                                <div class="images">
-                                    @foreach ($product->productImage as $image)
-                                        <img src="{{ asset('storage/' . $image->image) }}" class="img"
-                                            alt="Additional Image">
-                                    @endforeach
-                                </div>
-                            </main>
+                        <div class="xzoom-container">
+                            <img class="xzoom" id="xzoom-default" src="{{ asset('storage/' . $product->image) }}"
+                                xoriginal="{{ asset('storage/' . $product->image) }}" />
+                            <div class="xzoom-thumbs mt-2">
+                                @foreach ($product->productImage as $image)
+                                    <a href="{{ asset('storage/' . $image->image) }}">
+                                        <img class="xzoom-gallery" width="80"
+                                            src="{{ asset('storage/' . $image->image) }}"
+                                            xpreview="{{ asset('storage/' . $image->image) }}" />
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-12">
