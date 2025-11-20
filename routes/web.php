@@ -28,6 +28,8 @@ Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear
 
 // CheckoutController
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/cash-on-delivery', [CheckoutController::class, 'cashOnDelivery'])->name('cash-on-delivery');
+Route::get('/checkout/order-complete', [CheckoutController::class, 'orderComplete'])->name('order-complete');
 
 // Authenticated Routes
 Route::middleware(['auth', 'verified'])->group(function () {
