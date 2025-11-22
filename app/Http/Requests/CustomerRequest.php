@@ -29,7 +29,7 @@ class CustomerRequest extends FormRequest
             'address' => 'nullable|string',
             'date_of_birth' => 'nullable|date',
             'nid' => 'nullable|string|max:20|unique:customers,nid',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'blood_group' => 'nullable|string|max:3',
         ];
     }

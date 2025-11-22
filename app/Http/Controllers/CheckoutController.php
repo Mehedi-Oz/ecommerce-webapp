@@ -27,6 +27,9 @@ class CheckoutController extends Controller
 
         $this->customer = $this->createCustomer($request);
 
+        Session::put('customer_id', $this->customer->id);
+        Session::put('customer_name', $this->customer->name);
+
         $this->order = $this->createOrder($request);
 
         $this->saveOrderDetails();
@@ -34,7 +37,6 @@ class CheckoutController extends Controller
         Cart::destroy();
 
         Session::forget(['order_total', 'tax_total', 'shipping_total']);
-
 
         return redirect()->route('order-complete')->with('message', 'Your order has been placed successfully!');
     }

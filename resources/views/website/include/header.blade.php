@@ -45,18 +45,29 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-end">
-                        <div class="user">
-                            <i class="lni lni-user"></i>
-                            Hello
-                        </div>
-                        <ul class="user-login">
-                            <li>
-                                <a href="{{ route('login') }}">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('register') }}">Register</a>
-                            </li>
-                        </ul>
+                        @if (Session::get('customer_id'))
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                Hello, {{ Session::get('customer_name') }}
+                                <ul class="user-login">
+                                    <li>
+                                        <a href="#">Dashboard</a>
+                                    </li>
+                                    <li>
+                                    <a href="{{ route('customer.logout') }}">Logout</a>
+                                </li>
+                                </ul>
+                            </div>
+                        @else
+                            <ul class="user-login">
+                                <li>
+                                    <a href="{{ route('customer.login') }}">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('customer.register') }}">Register</a>
+                                </li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>

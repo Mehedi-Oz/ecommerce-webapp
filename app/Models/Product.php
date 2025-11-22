@@ -9,11 +9,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'category_id',
         'subcategory_id',
@@ -34,11 +29,6 @@ class Product extends Model
         'is_active',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'featured_status' => 'boolean',
         'is_active' => 'boolean',
@@ -46,41 +36,26 @@ class Product extends Model
         'selling_price' => 'decimal:2',
     ];
 
-    /**
-     * Relationship: Product has many Product Images.
-     */
     public function productImage()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    /**
-     * Relationship: Product belongs to a Category.
-     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * Relationship: Product belongs to a Subcategory.
-     */
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class);
     }
 
-    /**
-     * Relationship: Product belongs to a Brand.
-     */
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
 
-    /**
-     * Relationship: Product belongs to a Unit.
-     */
     public function unit()
     {
         return $this->belongsTo(Unit::class);

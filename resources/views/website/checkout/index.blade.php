@@ -1,7 +1,7 @@
 @extends('website.master')
 
 @section('title')
-    Details
+    Checkout
 @endsection
 
 @section('content')

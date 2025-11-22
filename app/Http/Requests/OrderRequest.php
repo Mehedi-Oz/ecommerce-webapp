@@ -24,6 +24,7 @@ class OrderRequest extends FormRequest
         return [
             'customer_id' => 'required|exists:customers,id',
             'order_date' => 'required|date',
+            'order_timestamp' => 'required|date',
             'order_total' => 'required|numeric|min:0',
             'tax_total' => 'required|numeric|min:0',
             'shipping_total' => 'required|numeric|min:0',
